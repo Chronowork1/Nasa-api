@@ -10,21 +10,24 @@ function inputClick(){
     }
 }*/
 let url =  "https://api.nasa.gov/planetary/apod?api_key=zbSs6K5WiNMfDe3PWJb2m4RV92LGgykgYGyaTwl1";
-let inputVal;
+let inputVal;  
 $(document).ready(function(){
     $("#searchButton").click(function(){
         function getAPI(){ 
             inputVal = $("#searchInput").val();
-            console.log(inputVal)
+            let NasaImageAPI = "https://images-api.nasa.gov/search?q=" + inputVal
             $.ajax({
-                url:url,
+                url:NasaImageAPI,
                 method:"GET",
-                success: function(){
-                
+                success: function(response){
+                    console.log(response.collection.items[0].href)
+                    for(let i =0; i < response.collection.items.length; i++){
+                        $("#searchResult").append("<img src='" + response.collection.items[i].href + "'\>")
+                    }
                 }
             })
 
-        } 
+        }
+        getAPI();
     })
-
 })
