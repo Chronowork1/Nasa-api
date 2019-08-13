@@ -18,11 +18,11 @@ $(document).ready(function(){
             let NasaImageAPI = "https://images-api.nasa.gov/search?q=" + inputVal
             $.ajax({
                 url:NasaImageAPI,
-                method:"GET",
+                type:"GET",
                 success: function(response){
-                    console.log(response.collection.items[0].href)
                     for(let i =0; i < response.collection.items.length; i++){
-                        $("#searchResult").append("<img src='" + response.collection.items[i].href + "'\>")
+                        $("#searchResult").append("<img src='" + response.collection.items[i].href + "'\></<img>")
+                        console.log(response.collection.items[i].href)
                     }
                 }
             })
