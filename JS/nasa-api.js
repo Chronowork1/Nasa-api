@@ -21,7 +21,7 @@ $(document).ready(function(){
                 type:"GET",
                 success: function(response){
                     for(let i =0; i < response.collection.items.length; i++){
-                        $("#searchResult").append("<img src='" + response.collection.items[i].href + "'\></<img>")
+                        $("#searchResult").append("<img src='" + response.collection.items[i].href + "'>")
                         console.log(response.collection.items[i].href)
                     }
                 }
@@ -29,5 +29,20 @@ $(document).ready(function(){
 
         }
         getAPI();
+    })
+
+    $("#picOfTheDay").click(function(){
+        let picurl = "https://api.nasa.gov/planetary/apod?api_key=zbSs6K5WiNMfDe3PWJb2m4RV92LGgykgYGyaTwl1";
+        
+        $.ajax({
+            url: picurl,
+            type: "GET",
+            success: function(response){
+                console.log(response.explanation)
+                $("#searchResult").append("<img src='"+response.url+"'>")
+                $("#searchResult").append("<p>"+ response.explanation+"</p>")
+            }
+        })
+        $("#searchResult").html("")
     })
 })
