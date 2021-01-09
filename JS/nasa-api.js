@@ -9,7 +9,12 @@ function inputClick(){
         console.log("true")
     }
 }*/
-let url =  "https://api.nasa.gov/planetary/apod?api_key=zbSs6K5WiNMfDe3PWJb2m4RV92LGgykgYGyaTwl1";
+
+require('dotenv').config()
+console.log(process.env.API_KEY)
+
+let API_KEY = process.env.API_KEY
+let url =  "https://api.nasa.gov/planetary/apod?api_key=" + API_KEY;
 let inputVal;
 $(document).ready(function(){
     $("#searchButton").click(function(){
